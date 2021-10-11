@@ -37,13 +37,22 @@ let rec pyramid (x: int, l: int )=
         
     
 let rec pyramid1 (x: int, l:int)=
-     match l with
+    match l with
     | l when l >= x -> printf " " 
     | l when l < x &&  x < System.Console.WindowHeight && x < System.Console.WindowWidth ->
         znak (x-l-1, ' ')
         znak (l*2 + 1, '*')
         printfn " "
         pyramid1(x, l+1)
+        
+let rec pyramid2 (x: int, l:int)=
+    match l with
+    | l when l >= x -> printf " " 
+    | l when l < x &&  x < System.Console.WindowHeight && x < System.Console.WindowWidth ->
+        znak (x-l, ' ')
+        znak (l, '*')
+        printfn " "
+        pyramid2(x, l+1)
 
 let rec podz(x: int, liczb: int, podzlist: list<int>) =
     match x with
@@ -53,6 +62,19 @@ let rec podz(x: int, liczb: int, podzlist: list<int>) =
     | x when x = liczb -> podzlist
 
 
+//sortowanie
+let rec wstaw(el: int,  lst: list<int>)=
+    match lst with
+    | []-> [el]
+    | h::t -> if(el >= h) then el::lst
+              else h::(wstaw (el, t))
+                  
+
+let rec sort(lst: list<int>) =
+    match lst with
+    | [] -> []
+    |h::t -> wstaw(h, sort(t))
+///
 
 exception UJEMNY_ARGUMENT_LUB_ZERO
 let rec fun2 (x: int)=
@@ -71,18 +93,22 @@ let main argv =
     
 //    let wyn = fun1(0.0, 1.0, 0)
 //    printf "suma: %f, średnia geometryczna: %f" <|| wyn
-    
-    
-    pyramid (5, 1)
-    printfn " "
+        
+//    pyramid (5, 1)
+//    printfn " "
     pyramid1(5, 0)
     printfn " "
-//    let w1 = podz(1, 21, [])
     
-//    printfn "%A" w1
+    let w1 = podz(1, 1250, [])
+    printfn "Podzielniki: %A" w1
     
-//    let w2 = fun2(20)
-//    printfn "%b" w2
+    let w2 = fun2(20)
+    printfn "%b" w2
+
+//    let x = [5; 6; 1; 2; 7]
+//    let y = sort x
+//    printfn "Podzielniki: %A" y
+
     
     printf "Naciśnij klawisz..."
     ignore (System.Console.ReadKey(true))
