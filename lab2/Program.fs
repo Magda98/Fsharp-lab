@@ -53,6 +53,16 @@ let rec mnozlisty (a: LD) (b: LD) (w: LD) =
 let mnoz (n1 : LD, n2 : LD ) : LD =
     let cr = mnozlisty n1 n2 []
     List.rev(cr)
+    
+let rec odloz (x: list<int>, y : int) =
+    match x with
+    | _ -> y::x
+   
+let rec pobierz (x: list<int>) =
+    let ls = List.rev x
+    match ls with
+    | [] -> []
+    | h::t -> [h]
 
 [<EntryPoint>]
 let main argv =
