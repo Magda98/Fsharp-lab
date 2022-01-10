@@ -33,16 +33,15 @@ let main argv =
     let s1 = new Slon("Slonik1")
     let s2 = new Slon("Slonik2")
     let s3 = new Slon("Slonik3")
-    
     let l1 = new Lew("Simba")
     let l2 = new LewIndyjski("Simba Copy")
-    
-    
     let lz: Zwierze list = [s1;s2;s3;l1;l2]
     
     List.iter(fun (x: Zwierze)  ->  x.Opis()) (lz)
     List.iter(fun (x: Zwierze)  ->  x.Odglos()) (lz)
     
+    l2.Opis()
+    l2.Odglos()
     
     
     0 // return an integer exit code
